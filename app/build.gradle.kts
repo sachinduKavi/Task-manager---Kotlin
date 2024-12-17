@@ -7,6 +7,8 @@ android {
     namespace = "com.skcode2001.taskhub"
     compileSdk = 34
 
+
+
     defaultConfig {
         applicationId = "com.skcode2001.taskhub"
         minSdk = 24
@@ -66,4 +68,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }

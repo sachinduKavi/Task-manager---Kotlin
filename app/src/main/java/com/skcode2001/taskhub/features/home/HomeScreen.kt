@@ -5,7 +5,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -31,7 +36,20 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
         topBar = {
             TopAppBar(
                 title = {
-                    Row {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Box(
+                            modifier = Modifier.padding(end = 10.dp)
+                        ) {
+
+                            Icon(
+                                imageVector = Icons.Outlined.Settings,
+                                contentDescription = "Settings icon",
+                                tint = white,
+                                modifier = Modifier.size(35.dp)
+                            )
+                        }
                         Text("Task",
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Bold
@@ -56,7 +74,7 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
                     .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Hello World $name")
+//                Text("Hello World $name")
             }
         }
     )
