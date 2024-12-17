@@ -6,13 +6,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountBox
+import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -33,19 +38,22 @@ fun TaskTracker() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp)
+//                .height(300.dp)
                 .background(color = darkBlue, shape = RoundedCornerShape(10.dp))
                 .padding(all = 10.dp)
         ) {
             Column {
-                Row (modifier =  Modifier.fillMaxWidth()
-                    .height(70.dp).fillMaxWidth(),
+                Row (modifier = Modifier
+                    .fillMaxWidth()
+                    .height(70.dp)
+                    .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     )
                 {
                     Box(
-                        modifier = Modifier.padding(end = 10.dp)
+                        modifier = Modifier
+                            .padding(end = 10.dp)
                             .background(color = mainBackground)
                     ) {
 
@@ -53,11 +61,11 @@ fun TaskTracker() {
                             imageVector = Icons.Outlined.AccountBox,
                             contentDescription = "",
                             tint = white,
-                            modifier = Modifier.size(40.dp)
+                            modifier = Modifier.size(35.dp)
                         )
                     }
 
-                    Text("This is the Task name", color = white, fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                    Text("Practice for marathon", color = white, fontWeight = FontWeight.Bold, fontSize = 20.sp)
 
 
                     Box(
@@ -65,11 +73,37 @@ fun TaskTracker() {
                     ) {
 
                         Icon(
-                            imageVector = Icons.Outlined.AccountBox,
+                            imageVector = Icons.Outlined.CheckCircle,
                             contentDescription = "",
                             tint = white,
-                            modifier = Modifier.size(40.dp)
+                            modifier = Modifier.size(35.dp)
                         )
+                    }
+                }
+
+                LazyRow(modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .padding(horizontal = 5.dp),
+                    ) {
+                    items (250){ j ->
+                        Column {
+                            for (i in 0 until 7) {
+                                Box(modifier = Modifier.padding(3.dp)) {
+                                    Box(
+                                        modifier = Modifier
+                                            .background(
+                                                color = Color(0xFF111922),
+                                                shape = RoundedCornerShape(2.dp)
+                                            )
+                                            .height(15.dp)
+                                            .width(15.dp)
+                                    ) {
+
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
