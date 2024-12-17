@@ -2,6 +2,7 @@ package com.skcode2001.taskhub.features.home
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
+import com.skcode2001.taskhub.features.componets.TaskTracker
+import com.skcode2001.taskhub.ui.theme.darkBlue
 import com.skcode2001.taskhub.ui.theme.mainBackground
 import com.skcode2001.taskhub.ui.theme.white
 
@@ -88,7 +91,8 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
                             modifier = Modifier.padding(end = 0.dp)
                         ) {
 
-                            Button(onClick = { apiCall() }) {
+                            Button(onClick = { apiCall() }
+                            ) {
                                 Icon(
                                     imageVector = Icons.Outlined.AddCircle,
                                     contentDescription = "Settings icon",
@@ -106,16 +110,11 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
         },
 
         content = {padding ->
-            LazyColumn(modifier = Modifier.padding(padding).fillMaxSize()) {
+            LazyColumn(modifier = Modifier
+                .padding(padding).padding(horizontal = 10.dp)
+                ) {
                 items(10) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(padding),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text("Hi $name", color = white)
-                    }
+                    TaskTracker()
                 }
             }
         }
