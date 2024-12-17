@@ -1,13 +1,16 @@
 package com.skcode2001.taskhub.features.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -37,28 +40,48 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
             TopAppBar(
                 title = {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth()
                     ) {
+                        Row(
+
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Box(
+                                modifier = Modifier.padding(end = 10.dp)
+                            ) {
+
+                                Icon(
+                                    imageVector = Icons.Outlined.Settings,
+                                    contentDescription = "Settings icon",
+                                    tint = white,
+                                    modifier = Modifier.size(35.dp)
+                                )
+                            }
+                            Text(
+                                "Task",
+                                fontSize = 28.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                "Hub",
+                                color = Color(0xFF9354D5),
+                                fontSize = 28.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+
                         Box(
                             modifier = Modifier.padding(end = 10.dp)
                         ) {
 
                             Icon(
-                                imageVector = Icons.Outlined.Settings,
+                                imageVector = Icons.Outlined.AddCircle,
                                 contentDescription = "Settings icon",
                                 tint = white,
                                 modifier = Modifier.size(35.dp)
                             )
                         }
-                        Text("Task",
-                            fontSize = 28.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text("Hub",
-                            color = Color(0xFF9354D5),
-                            fontSize = 28.sp,
-                            fontWeight = FontWeight.Bold
-                        )
                     }
                         },
                 colors = TopAppBarDefaults.topAppBarColors(
