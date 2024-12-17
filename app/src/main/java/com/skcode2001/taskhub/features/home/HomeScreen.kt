@@ -74,7 +74,7 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
                     .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
-//                Text("Hello World $name")
+                Text("Hello World $name", color = white)
             }
         }
     )
