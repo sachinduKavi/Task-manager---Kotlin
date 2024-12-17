@@ -98,9 +98,7 @@ fun TaskTracker() {
                                             )
                                             .height(15.dp)
                                             .width(15.dp)
-                                    ) {
-
-                                    }
+                                    )
                                 }
                             }
                         }
