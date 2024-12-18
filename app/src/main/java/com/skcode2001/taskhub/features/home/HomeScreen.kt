@@ -63,7 +63,8 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
         mutableStateOf(true)
     }
 
-    val
+    var name = remember { mutableStateOf("") }
+    var description = remember { mutableStateOf("") }
 
     Scaffold (
         containerColor = MaterialTheme.colorScheme.background,
@@ -189,11 +190,12 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
 
 
                             Column(
-                                modifier = Modifier.fillMaxSize()
-                                    .background(color = Color.Red)
+                                modifier = Modifier
+                                    .fillMaxSize()
                                     .padding(10.dp)
                             ) {
-                                CustomTextField("name", )
+                                CustomTextField("Name", name)
+                                CustomTextField("Description", description)
                             }
                             
                         }
