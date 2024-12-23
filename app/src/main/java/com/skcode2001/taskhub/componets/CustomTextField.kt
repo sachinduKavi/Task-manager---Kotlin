@@ -1,4 +1,4 @@
-package com.skcode2001.taskhub.features.componets
+package com.skcode2001.taskhub.componets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

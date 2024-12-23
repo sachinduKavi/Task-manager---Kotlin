@@ -42,8 +42,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
-import com.skcode2001.taskhub.features.componets.CustomTextField
-import com.skcode2001.taskhub.features.componets.TaskTracker
+import com.skcode2001.taskhub.componets.CustomTextField
+import com.skcode2001.taskhub.componets.NewTask
+import com.skcode2001.taskhub.componets.TaskTracker
 import com.skcode2001.taskhub.ui.theme.darkBlue
 import com.skcode2001.taskhub.ui.theme.mainBackground
 import com.skcode2001.taskhub.ui.theme.transparentDark
@@ -60,11 +61,9 @@ fun apiCall() {
 @Composable
 fun HomeScreen(name: String, modifier: Modifier = Modifier) {
     var overlayOn = remember {
-        mutableStateOf(true)
+        mutableStateOf(false)
     }
 
-    var name = remember { mutableStateOf("") }
-    var description = remember { mutableStateOf("") }
 
     Scaffold (
         containerColor = MaterialTheme.colorScheme.background,
@@ -118,6 +117,9 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
                                     contentDescription = "Settings icon",
                                     tint = white,
                                     modifier = Modifier.size(32.dp)
+                                        .clickable {
+                                            overlayOn.value = true
+                                        }
                                 )
                             }
                         }
@@ -142,64 +144,7 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
                 }
 
                 if(overlayOn.value)  {
-                    Box(modifier = Modifier
-                        .fillMaxSize()
-                        .padding(padding)
-                        .background(color = transparentDark)
-                        .clickable(
-                            indication = null,
-                            interactionSource = remember {
-                                MutableInteractionSource()
-                            },
-                            onClick = {}
-                        ),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Column(modifier = Modifier
-                            .fillMaxSize(),
-                            ) {
-
-                            Row (modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 10.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically){
-
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(
-                                        modifier = Modifier
-                                            .padding(end = 20.dp)
-                                            .size(32.dp),
-                                        imageVector = Icons.Filled.Close,
-                                        contentDescription = "Cross Icon",
-                                        tint = white,
-                                    )
-
-                                    Text(text = "New Habit", color = white, fontSize = 30.sp,
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                }
-
-                                Icon(
-                                    imageVector = Icons.Filled.Check,
-                                    contentDescription = null,
-                                    tint = white,
-                                    modifier = Modifier.size(32.dp)
-                                )
-                            }
-
-
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(10.dp)
-                            ) {
-                                CustomTextField("Name", name)
-                                CustomTextField("Description", description)
-                            }
-                            
-                        }
-                    }
+                    NewTask(padding, overlayOn)
                 }
 
             }
