@@ -9,10 +9,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -29,24 +27,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.skcode2001.taskhub.R
 import com.skcode2001.taskhub.ui.theme.transparentDark
 import com.skcode2001.taskhub.ui.theme.white
-
-
 import kotlin.math.log
-
 
 
 @Composable
 fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
 
-
-    var icons  = listOf(
-        R.drawable.icon1,
-        R.drawable.icon2,
-        R.drawable.icon3
-    )
     var name = remember { mutableStateOf("") }
     var description = remember { mutableStateOf("") }
 
@@ -108,19 +96,6 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
             ) {
                 CustomTextField("Name", name)
                 CustomTextField("Description", description)
-
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = "Icon",
-                    color = white,
-                )
-                Column {
-
-                    IconGrid(icons,5)
-                }
-
-
-
             }
 
         }
