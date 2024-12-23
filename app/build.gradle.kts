@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation("com.android.volley:volley:1.2.1")
     implementation("androidx.navigation:navigation-compose:2.7.3")
+    implementation("androidx.compose.foundation:foundation:1.5.3")
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
