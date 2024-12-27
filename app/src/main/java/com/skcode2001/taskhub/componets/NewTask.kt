@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -44,37 +45,48 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
 
     var name = remember { mutableStateOf("") }
     var description = remember { mutableStateOf("") }
-    var color = remember { mutableStateOf("") }
+    var selectedColor = remember { mutableStateOf(Color.Transparent) }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(padding)
-        .background(color = transparentDark)
-        .clickable(
-            indication = null,
-            interactionSource = remember {
-                MutableInteractionSource()
-            },
-            onClick = {}
-        ),
+    val colors = listOf(
+        Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Cyan,
+        Color.Magenta, Color.Gray, Color.LightGray, Color.DarkGray, Color.Black,
+        Color.White, Color(0xFFFFA500), Color(0xFF800080), Color(0xFF00FF00), Color(0xFFFF1493),
+        Color(0xFF4682B4), Color(0xFF32CD32), Color(0xFFFF4500)
+
+    ) // Define 26 colors
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(padding)
+            .background(color = transparentDark)
+            .clickable(
+                indication = null,
+                interactionSource = remember {
+                    MutableInteractionSource()
+                },
+                onClick = {}
+            ),
         contentAlignment = Alignment.Center
     ) {
-        Column(modifier = Modifier
-            .fillMaxSize(),
+        Column(
+            modifier = Modifier.fillMaxSize(),
         ) {
 
-            Row (modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 10.dp),
+            // Top Row with Title and Icons
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically){
-
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         modifier = Modifier
                             .padding(end = 20.dp)
                             .size(32.dp)
-                            .clickable{
+                            .clickable {
                                 Log.d("sk", "Hello World")
                                 overLayOn.value = false
                             },
@@ -83,7 +95,10 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                         tint = white,
                     )
 
-                    Text(text = "New Habit", color = white, fontSize = 30.sp,
+                    Text(
+                        text = "New Habit",
+                        color = white,
+                        fontSize = 30.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -96,7 +111,7 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                 )
             }
 
-
+            // Main Content
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -105,22 +120,52 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                 CustomTextField("Name", name)
                 CustomTextField("Description", description)
 
-                Column{
+                Column {
                     Text(
                         text = "Colour",
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier.padding(vertical = 8.dp)
                     )
-                    Box(modifier = Modifier
-                            .size(60.dp)
-                            .clip(RectangleShape)
-                            .background(Color.Blue)){
 
+                    // color boxes
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            colors.chunked(6).forEach { rowColors ->
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceEvenly
+                                ) {
+                                    rowColors.forEach { color ->
+                                        Box(
+                                            modifier = Modifier
+                                                .size(50.dp)
+                                                .clip(RoundedCornerShape(12.dp)) // Rounded corners
+                                                .background(color)
+                                                .clickable {
+                                                    selectedColor.value = color // Update selected color
+                                                }
+                                                .padding(4.dp),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+                                            if (selectedColor.value == color) {
+                                                Box(
+                                                    modifier = Modifier
+                                                        .size(24.dp)
+                                                        .clip(CircleShape)
+                                                        .background(Color.White)
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-
-
-
         }
     }
 }
