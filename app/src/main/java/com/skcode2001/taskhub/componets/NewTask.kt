@@ -46,47 +46,59 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
     var name = remember { mutableStateOf("") }
     var description = remember { mutableStateOf("") }
     var selectedColor = remember { mutableStateOf(Color.Transparent) }
-
     val colors = listOf(
-        Color.Red, Color.Green, Color.Blue, Color.Yellow, Color.Cyan,
-        Color.Magenta, Color.Gray, Color.LightGray, Color.DarkGray, Color.Black,
-        Color.White, Color(0xFFFFA500), Color(0xFF800080), Color(0xFF00FF00), Color(0xFFFF1493),
-        Color(0xFF4682B4), Color(0xFF32CD32), Color(0xFFFF4500)
+        Color.Red,
+        Color.Blue,
+        Color(0xFF008000),
+        Color(0xFFC4B454),
+        Color(0xFF1e847f),
+        Color(0xFFc6d7eb),
+        Color.Cyan,
+        Color.Magenta,
+        Color.Gray,
+        Color.Black,
+        Color(0xFFfbcbc9),
+        Color(0xFFe2d810),
+        Color(0xFF800080),
+        Color(0xFF00FF00),
+        Color(0xFFFF1493),
+        Color(0xFF4682B4),
+        Color(0xFFff6e40),
+        Color(0xFFd9138a),
+        Color(0xFF12a4d9),
+        Color(0xFF918151),
+        Color(0xFFe75874),
+    )
 
-    ) // Define 26 colors
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(padding)
-            .background(color = transparentDark)
-            .clickable(
-                indication = null,
-                interactionSource = remember {
-                    MutableInteractionSource()
-                },
-                onClick = {}
-            ),
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .padding(padding)
+        .background(color = transparentDark)
+        .clickable(
+            indication = null,
+            interactionSource = remember {
+                MutableInteractionSource()
+            },
+            onClick = {}
+        ),
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
+        Column(modifier = Modifier
+            .fillMaxSize(),
         ) {
 
-            // Top Row with Title and Icons
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+                verticalAlignment = Alignment.CenterVertically){
+
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         modifier = Modifier
                             .padding(end = 20.dp)
                             .size(32.dp)
-                            .clickable {
+                            .clickable{
                                 Log.d("sk", "Hello World")
                                 overLayOn.value = false
                             },
@@ -95,10 +107,7 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                         tint = white,
                     )
 
-                    Text(
-                        text = "New Habit",
-                        color = white,
-                        fontSize = 30.sp,
+                    Text(text = "New Habit", color = white, fontSize = 30.sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -111,7 +120,7 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                 )
             }
 
-            // Main Content
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -127,13 +136,13 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                         modifier = Modifier.padding(vertical = 8.dp)
                     )
 
-                    // color boxes
+                    // Display 26 color boxes
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            colors.chunked(6).forEach { rowColors ->
+                            colors.chunked(7).forEach { rowColors ->
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
                                     horizontalArrangement = Arrangement.SpaceEvenly
@@ -141,11 +150,11 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                                     rowColors.forEach { color ->
                                         Box(
                                             modifier = Modifier
-                                                .size(50.dp)
-                                                .clip(RoundedCornerShape(12.dp)) // Rounded corners
+                                                .size(40.dp)
+                                                .clip(RoundedCornerShape(12.dp))
                                                 .background(color)
                                                 .clickable {
-                                                    selectedColor.value = color // Update selected color
+                                                    selectedColor.value = color
                                                 }
                                                 .padding(4.dp),
                                             contentAlignment = Alignment.Center
@@ -166,6 +175,9 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                     }
                 }
             }
+
+
+
         }
     }
 }
