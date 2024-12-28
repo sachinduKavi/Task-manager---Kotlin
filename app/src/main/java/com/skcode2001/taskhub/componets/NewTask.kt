@@ -9,15 +9,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-<<<<<<< HEAD
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-=======
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
->>>>>>> 3b30255dfea1e4b55fa6fd534ade14b4957ded0d
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
@@ -34,23 +29,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-<<<<<<< HEAD
-import com.skcode2001.taskhub.ui.theme.transparentDark
-import com.skcode2001.taskhub.ui.theme.white
-import kotlin.math.log
-=======
 import com.skcode2001.taskhub.R
 import com.skcode2001.taskhub.components.IconGrid
 import com.skcode2001.taskhub.ui.theme.transparentDark
 import com.skcode2001.taskhub.ui.theme.white
->>>>>>> 3b30255dfea1e4b55fa6fd534ade14b4957ded0d
 
 
 @Composable
 fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
 
-<<<<<<< HEAD
-=======
     var icons = listOf(
         R.drawable.icon1,
         R.drawable.icon2,
@@ -74,7 +61,6 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
         R.drawable.icon20,
         R.drawable.icon21,
     )
->>>>>>> 3b30255dfea1e4b55fa6fd534ade14b4957ded0d
     var name = remember { mutableStateOf("") }
     var description = remember { mutableStateOf("") }
 
@@ -136,8 +122,6 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
             ) {
                 CustomTextField("Name", name)
                 CustomTextField("Description", description)
-<<<<<<< HEAD
-=======
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "Icons",
@@ -145,7 +129,6 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 IconGrid(icons,7)
->>>>>>> 3b30255dfea1e4b55fa6fd534ade14b4957ded0d
             }
 
         }
