@@ -20,6 +20,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,6 +49,8 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
     var name = remember { mutableStateOf("") }
     var description = remember { mutableStateOf("") }
     var selectedColor = remember { mutableStateOf(Color.Transparent) }
+    var expanded = remember { mutableStateOf(false) }
+    var selectOption = remember { mutableStateOf("select an option") }
     val colors = listOf(
         Color.Red,
         Color.Blue,
@@ -131,6 +136,16 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
 
                 Column {
                     Text(
+                        text = "Streak Goal",
+                        color = Color.White,
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+                    DropDown()
+                }
+
+
+                Column {
+                    Text(
                         text = "Colour",
                         color = Color.White,
                         modifier = Modifier.padding(vertical = 8.dp)
@@ -173,11 +188,15 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                             }
                         }
                     }
+
                 }
+
+            }
+
             }
 
 
 
         }
-    }
+
 }
