@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -43,62 +44,19 @@ import com.skcode2001.taskhub.R
 import com.skcode2001.taskhub.components.IconGrid
 import com.skcode2001.taskhub.ui.theme.transparentDark
 import com.skcode2001.taskhub.ui.theme.white
+import com.skcode2001.taskhub.models.ValueList
 
 
 @Composable
 fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
 
-    var icons = listOf(
-        R.drawable.icon1,
-        R.drawable.icon2,
-        R.drawable.icon3,
-        R.drawable.icon4,
-        R.drawable.icon5,
-        R.drawable.icon6,
-        R.drawable.icon7,
-        R.drawable.icon8,
-        R.drawable.icon9,
-        R.drawable.icon10,
-        R.drawable.icon11,
-        R.drawable.icon12,
-        R.drawable.icon13,
-        R.drawable.icon14,
-        R.drawable.icon15,
-        R.drawable.icon16,
-        R.drawable.icon17,
-        R.drawable.icon18,
-        R.drawable.icon19,
-        R.drawable.icon20,
-        R.drawable.icon21,
-    )
+    var icons = ValueList.icons
     var name = remember { mutableStateOf("") }
     var description = remember { mutableStateOf("") }
     var selectedColor = remember { mutableStateOf(Color.Transparent) }
     var expanded = remember { mutableStateOf(false) }
     var selectOption = remember { mutableStateOf("select an option") }
-    val colors = listOf(
-        Color.Red,
-        Color.Blue,
-        Color(0xFF008000),
-        Color(0xFFC4B454),
-        Color(0xFF1e847f),
-        Color(0xFFc6d7eb),
-        Color.Cyan,
-        Color.Magenta,
-        Color.Gray,
-        Color.Black,
-        Color(0xFFfbcbc9),
-        Color(0xFFe2d810),
-        Color(0xFF800080),
-        Color(0xFF00FF00),
-        Color(0xFFFF1493),
-        Color(0xFF4682B4),
-        Color(0xFFff6e40),
-        Color(0xFFd9138a),
-        Color(0xFF12a4d9),
-        Color(0xFF918151),
-        Color(0xFFe75874),
-    )
+    val colors = ValueList.colors
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -113,109 +71,146 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
         ),
         contentAlignment = Alignment.Center
     ) {
-        Column(modifier = Modifier
+        LazyColumn(modifier = Modifier
             .fillMaxSize(),
         ) {
 
-            Row (modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 10.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically){
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
+            item {
+                Box {
+                    Row(
                         modifier = Modifier
-                            .padding(end = 20.dp)
-                            .size(32.dp)
-                            .clickable{
-                                Log.d("sk", "Hello World")
-                                overLayOn.value = false
-                            },
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = "Cross Icon",
-                        tint = white,
-                    )
+                            .fillMaxWidth()
+                            .padding(horizontal = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
 
-                    Text(text = "New Habit", color = white, fontSize = 30.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                modifier = Modifier
+                                    .padding(end = 20.dp)
+                                    .size(32.dp)
+                                    .clickable {
+                                        Log.d("sk", "Hello World")
+                                        overLayOn.value = false
+                                    },
+                                imageVector = Icons.Filled.Close,
+                                contentDescription = "Cross Icon",
+                                tint = white,
+                            )
+
+                            Text(
+                                text = "New Habit", color = white, fontSize = 30.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+
+                        Icon(
+                            imageVector = Icons.Filled.Check,
+                            contentDescription = null,
+                            tint = white,
+                            modifier = Modifier.size(32.dp)
+                        )
+                    }
                 }
-
-                Icon(
-                    imageVector = Icons.Filled.Check,
-                    contentDescription = null,
-                    tint = white,
-                    modifier = Modifier.size(32.dp)
-                )
             }
 
 
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(10.dp)
-            ) {
-                CustomTextField("Name", name)
-                CustomTextField("Description", description)
 
-                Column {
+
+            item {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(10.dp)
+                ) {
+                    CustomTextField("Name", name)
+                    CustomTextField("Description", description)
+
+
+
+
+                    Column {
+                        Text(
+                            text = "Streak Goal",
+                            color = Color.White,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                        DropDown()
+                    }
+
+
+                    Spacer(modifier = Modifier.height(10.dp))
                     Text(
-                        text = "Streak Goal",
-                        color = Color.White,
-                        modifier = Modifier.padding(vertical = 8.dp)
+                        text = "Icons",
+                        color = white
                     )
-                    DropDown()
-                }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    IconGrid(icons, 7)
 
 
-                Column {
-                    Text(
-                        text = "Colour",
-                        color = Color.White,
-                        modifier = Modifier.padding(vertical = 8.dp)
-                    )
+                    Column {
+                        Text(
+                            text = "Colour",
+                            color = Color.White,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
 
-                    // Display 26 color boxes
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            colors.chunked(7).forEach { rowColors ->
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceEvenly
-                                ) {
-                                    rowColors.forEach { color ->
-                                        Box(
-                                            modifier = Modifier
-                                                .size(40.dp)
-                                                .clip(RoundedCornerShape(12.dp))
-                                                .background(color)
-                                                .clickable {
-                                                    selectedColor.value = color
+                        // Display 26 color boxes
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                colors.chunked(7).forEach { rowColors ->
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceEvenly
+                                    ) {
+                                        rowColors.forEach { color ->
+                                            Box(
+                                                modifier = Modifier
+                                                    .size(40.dp)
+                                                    .clip(RoundedCornerShape(12.dp))
+                                                    .background(color)
+                                                    .clickable {
+                                                        selectedColor.value = color
+                                                    }
+                                                    .padding(4.dp),
+                                                contentAlignment = Alignment.Center
+                                            ) {
+                                                if (selectedColor.value == color) {
+                                                    Box(
+                                                        modifier = Modifier
+                                                            .size(24.dp)
+                                                            .clip(CircleShape)
+                                                            .background(Color.White)
+                                                    )
                                                 }
-                                                .padding(4.dp),
-                                            contentAlignment = Alignment.Center
-                                        ) {
-                                            if (selectedColor.value == color) {
-                                                Box(
-                                                    modifier = Modifier
-                                                        .size(24.dp)
-                                                        .clip(CircleShape)
-                                                        .background(Color.White)
-                                                )
                                             }
                                         }
                                     }
                                 }
                             }
                         }
+
+
+                        Box(modifier = Modifier.padding(all = 20.dp)) {
+                            Button(
+                                onClick = { /*TODO*/ },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(color = Color.White)
+                                    .padding(all = 10.dp)
+                            ) {
+                                Text("Hello World", color = Color.White)
+
+                            }
+                        }
+
                     }
 
                 }
-
             }
 
             }
