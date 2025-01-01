@@ -1,7 +1,9 @@
 package com.skcode2001.taskhub.componets
 
+import android.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -98,6 +100,7 @@ fun TaskTracker() {
                                             )
                                             .height(15.dp)
                                             .width(15.dp)
+//                                            .clickable (onClick = )
                                     )
                                 }
                             }
