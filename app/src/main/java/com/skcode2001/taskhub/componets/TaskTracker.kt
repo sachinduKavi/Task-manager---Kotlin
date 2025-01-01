@@ -116,7 +116,9 @@ fun TaskTracker() {
                                             )
                                             .height(15.dp)
                                             .width(15.dp)
-//                                            .clickable (onClick = )
+                                            .clickable (onClick = {
+                                                calenderSate.show()
+                                            } )
                                     )
                                 }
                             }
