@@ -1,6 +1,7 @@
 package com.skcode2001.taskhub.componets
 
 import android.R
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -21,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountBox
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,12 +32,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.maxkeppeker.sheets.core.models.base.rememberSheetState
+import com.maxkeppeler.sheets.calendar.CalendarDialog
+import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import com.skcode2001.taskhub.ui.theme.darkBlue
 import com.skcode2001.taskhub.ui.theme.mainBackground
 import com.skcode2001.taskhub.ui.theme.white
+import java.time.LocalDate
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaskTracker() {
+
+    val calenderSate = rememberSheetState()
+
+    CalendarDialog(
+        state = calenderSate,
+        selection = CalendarSelection.Date{date ->
+        Log.d("Selected Date","$date")
+    })
+
     Box(modifier = Modifier.padding(bottom = 15.dp)) {
         Box(
             modifier = Modifier
