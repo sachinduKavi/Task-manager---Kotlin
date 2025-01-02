@@ -46,13 +46,13 @@ import com.skcode2001.taskhub.ui.theme.white
 import java.util.Calendar
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun TaskTracker() {
 
     var date by rememberSaveable { mutableStateOf("") }
 
-   
+
     val mCalendar = Calendar.getInstance()
     val year = mCalendar.get(Calendar.YEAR)
     val month = mCalendar.get(Calendar.MONTH)
@@ -63,7 +63,7 @@ fun TaskTracker() {
     val mDatePickerDialog = android.app.DatePickerDialog(
         mContext,
         { _, selectedYear: Int, selectedMonth: Int, selectedDay: Int ->
-            date = "$selectedDay/${selectedMonth + 1}/$selectedYear"
+            date = "$selectedDay/${selectedMonth+1}/$selectedYear"
         },
         year,
         month,
