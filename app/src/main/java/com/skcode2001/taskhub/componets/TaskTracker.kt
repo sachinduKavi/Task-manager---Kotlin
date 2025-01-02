@@ -52,13 +52,13 @@ fun TaskTracker() {
 
     var date by rememberSaveable { mutableStateOf("") }
 
-    // Get the current date
+   
     val mCalendar = Calendar.getInstance()
     val year = mCalendar.get(Calendar.YEAR)
     val month = mCalendar.get(Calendar.MONTH)
     val day = mCalendar.get(Calendar.DAY_OF_MONTH)
 
-    // Create a DatePickerDialog
+
     val mContext = LocalContext.current
     val mDatePickerDialog = android.app.DatePickerDialog(
         mContext,
