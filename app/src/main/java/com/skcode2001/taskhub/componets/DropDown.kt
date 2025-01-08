@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,7 +24,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DropDown(){
+fun DropDown(goal: MutableState<String>){
 
     val list = listOf("None","Daily","Week","Month")
     var selectedText by remember {
@@ -63,6 +64,7 @@ fun DropDown(){
                             Text(text=text, color = Color.Black)},
                         onClick ={
                             selectedText = list[index]
+                            goal.value = selectedText
                             isExpanded=false
 
                                  } ,

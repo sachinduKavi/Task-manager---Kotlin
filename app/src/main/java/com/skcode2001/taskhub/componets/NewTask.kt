@@ -45,18 +45,34 @@ import com.skcode2001.taskhub.components.IconGrid
 import com.skcode2001.taskhub.ui.theme.transparentDark
 import com.skcode2001.taskhub.ui.theme.white
 import com.skcode2001.taskhub.models.ValueList
+import com.skcode2001.taskhub.sql_helper.Task
 
 
 @Composable
 fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
 
+
+
     var icons = ValueList.icons
     var name = remember { mutableStateOf("") }
     var description = remember { mutableStateOf("") }
-    var selectedColor = remember { mutableStateOf(Color.Transparent) }
+    var selectedColor = remember { mutableStateOf(1) }
+    var goal = remember {
+        mutableStateOf("None")
+    }
     var expanded = remember { mutableStateOf(false) }
     var selectOption = remember { mutableStateOf("select an option") }
     val colors = ValueList.colors
+
+
+    fun submission() {
+//        val task = Task(
+//            name = name.value,
+//            description = description.value,
+//            goal = goal.value
+//            icon =
+//            )
+    }
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -109,7 +125,9 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                             imageVector = Icons.Filled.Check,
                             contentDescription = null,
                             tint = white,
-                            modifier = Modifier.size(32.dp)
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clickable { submission() }
                         )
                     }
                 }
@@ -136,7 +154,7 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                             color = Color.White,
                             modifier = Modifier.padding(vertical = 8.dp)
                         )
-                        DropDown()
+                        DropDown(goal)
                     }
 
 
@@ -174,18 +192,18 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                                                     .clip(RoundedCornerShape(12.dp))
                                                     .background(color)
                                                     .clickable {
-                                                        selectedColor.value = color
+//                                                        selectedColor.value = color
                                                     }
                                                     .padding(4.dp),
                                                 contentAlignment = Alignment.Center
                                             ) {
-                                                if (selectedColor.value == color) {
-                                                    Box(
-                                                        modifier = Modifier
-                                                            .size(24.dp)
-                                                            .clip(CircleShape)
-                                                            .background(Color.White)
-                                                    )
+//                                                if (selectedColor.value == color) {
+//                                                    Box(
+//                                                        modifier = Modifier
+//                                                            .size(24.dp)
+//                                                            .clip(CircleShape)
+//                                                            .background(Color.White)
+//                                                    )
                                                 }
                                             }
                                         }
@@ -195,18 +213,7 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
                         }
 
 
-                        Box(modifier = Modifier.padding(all = 20.dp)) {
-                            Button(
-                                onClick = { /*TODO*/ },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(color = Color.White)
-                                    .padding(all = 10.dp)
-                            ) {
-                                Text("Hello World", color = Color.White)
 
-                            }
-                        }
 
                     }
 
@@ -219,4 +226,3 @@ fun NewTask(padding: PaddingValues, overLayOn: MutableState<Boolean>) {
 
         }
 
-}
